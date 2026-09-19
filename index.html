@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akash &amp; Vanshika — End-Term &amp; Placement War Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#e6eaef; --panel:#ffffff; --panel2:#f5f7fa;
+  --ink:#141d2b; --muted:#5c6a7d; --line:#d3dae3; --line2:#e6ebf1;
+  --joint:#20418f; --akash:#0c6b5c; --vanshika:#8b2f62; --exam:#a81f1b; --done:#2c7a4b;
+  --shadow:0 1px 0 rgba(20,29,43,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121722; --panel:#1a2230; --panel2:#202a3a;
+    --ink:#e7ecf3; --muted:#9aa8bb; --line:#2f3b4d; --line2:#27313f;
+    --joint:#7d9ce8; --akash:#4dbfa8; --vanshika:#e084b4; --exam:#ff7a72; --done:#5fc98a;
+    --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121722; --panel:#1a2230; --panel2:#202a3a;
+  --ink:#e7ecf3; --muted:#9aa8bb; --line:#2f3b4d; --line2:#27313f;
+  --joint:#7d9ce8; --akash:#4dbfa8; --vanshika:#e084b4; --exam:#ff7a72; --done:#5fc98a;
+  --shadow:none;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Source Serif 4",Georgia,"Times New Roman",serif;
+  font-size:16px; line-height:1.5; -webkit-text-size-adjust:100%;
+}
+h1,h2,h3,h4,.ui{font-family:Archivo,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 14px 80px}
+
+header.top{
+  position:sticky;top:0;z-index:30;background:var(--panel);
+  border-bottom:1px solid var(--line);
+}
+.top-in{max-width:1040px;margin:0 auto;padding:12px 14px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:baseline}
+.brand{font-family:Archivo;font-weight:700;font-size:19px;letter-spacing:-.02em;margin:0}
+.brand span{color:var(--muted);font-weight:500}
+.headmeta{font-size:13px;color:var(--muted);margin-left:auto;display:flex;gap:12px;align-items:center}
+button.mini{
+  font-family:Archivo;font-size:12px;font-weight:600;color:var(--ink);
+  background:var(--panel2);border:1px solid var(--line);border-radius:999px;
+  padding:5px 11px;cursor:pointer}
+button.mini:hover{border-color:var(--ink)}
+.bar{height:5px;background:var(--line2);border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--joint);width:0%;transition:width .35s ease}
+.topbar{max-width:1040px;margin:8px auto 0;padding:0 14px 10px}
+.topbar .lab{display:flex;justify-content:space-between;font-family:Archivo;font-size:12px;color:var(--muted);margin-bottom:5px}
+
+nav.tabs{max-width:1040px;margin:0 auto;padding:0 8px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs button{
+  font-family:Archivo;font-size:13px;font-weight:600;white-space:nowrap;
+  background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);
+  padding:9px 10px;cursor:pointer}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--joint)}
+
+/* day rail */
+.rail{display:flex;gap:8px;overflow-x:auto;padding:14px 2px 4px;scrollbar-width:thin}
+.chip{
+  flex:0 0 auto;width:92px;padding:9px 10px;border:1px solid var(--line);border-radius:10px;
+  background:var(--panel);cursor:pointer;text-align:left;font-family:Archivo;box-shadow:var(--shadow)}
+.chip b{display:block;font-size:15px;font-weight:700;letter-spacing:-.01em}
+.chip small{display:block;font-size:11px;color:var(--muted);margin-bottom:6px}
+.chip .ex{font-size:10.5px;font-weight:700;color:var(--exam);letter-spacing:.01em;min-height:13px}
+.chip[aria-current="true"]{border-color:var(--joint);box-shadow:inset 0 0 0 1px var(--joint)}
+.chip.examday{border-left:4px solid var(--exam)}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;margin:14px 0;box-shadow:var(--shadow)}
+.daytitle{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin:0 0 2px}
+.daytitle h2{margin:0;font-size:25px;letter-spacing:-.02em}
+.daytitle .wd{color:var(--muted);font-family:Archivo;font-weight:500;font-size:14px}
+.examflag{font-family:Archivo;font-size:12px;font-weight:700;color:#fff;background:var(--exam);border-radius:5px;padding:3px 8px}
+.target{border-left:3px solid var(--joint);padding:6px 0 6px 12px;margin:12px 0 4px;font-size:17px}
+.target em{font-style:italic;color:var(--muted);font-family:Archivo;font-size:12px;font-weight:600;display:block;font-style:normal;margin-bottom:2px}
+
+.block{margin-top:18px;padding-top:12px;border-top:1px solid var(--line2)}
+.block>h3{margin:0 0 8px;font-size:13.5px;font-weight:700;letter-spacing:.01em;display:flex;align-items:center;gap:7px}
+.block>h3 .who{border-radius:4px;padding:1px 7px;color:#fff;font-size:11px;font-weight:700}
+.w-b{background:var(--joint)} .w-a{background:var(--akash)} .w-v{background:var(--vanshika)}
+.b-akash{border-left:3px solid var(--akash);padding-left:12px;border-top:none;margin-top:14px}
+.b-vanshika{border-left:3px solid var(--vanshika);padding-left:12px;border-top:none;margin-top:14px}
+.b-both{border-left:3px solid var(--joint);padding-left:12px;border-top:none;margin-top:14px}
+
+ul.tasks{list-style:none;margin:0;padding:0}
+ul.tasks li{display:flex;gap:9px;align-items:flex-start;padding:3px 0}
+input[type=checkbox]{
+  appearance:none;-webkit-appearance:none;flex:0 0 auto;
+  width:17px;height:17px;margin:4px 0 0;border:1.5px solid var(--muted);border-radius:4px;
+  background:transparent;cursor:pointer;position:relative}
+input[type=checkbox]:hover{border-color:var(--ink)}
+input[type=checkbox]:checked{background:var(--done);border-color:var(--done)}
+input[type=checkbox]:checked::after{
+  content:"";position:absolute;left:5px;top:1px;width:4px;height:9px;
+  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(43deg)}
+input[type=checkbox]:focus-visible{outline:2px solid var(--joint);outline-offset:2px}
+label.tk{cursor:pointer;flex:1;min-width:0}
+input:checked+label.tk{color:var(--muted);text-decoration:line-through;text-decoration-thickness:1px}
+label.tk .note{display:block;font-family:Archivo;font-size:12px;color:var(--muted);text-decoration:none}
+
+.fill{width:100%;font-family:"Source Serif 4",serif;font-size:15px;color:var(--ink);
+  background:transparent;border:none;border-bottom:1px dashed var(--line);padding:5px 2px}
+.fill:focus{outline:none;border-bottom:1px solid var(--joint)}
+.must{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:12px 14px;margin-top:16px}
+.must h3{margin:0 0 6px;font-size:13px}
+
+details.conc{border:1px solid var(--line);border-radius:9px;margin:8px 0;background:var(--panel)}
+details.conc>summary{
+  list-style:none;cursor:pointer;padding:10px 13px;display:flex;gap:9px;align-items:center;
+  font-family:Archivo;font-weight:600;font-size:15px}
+details.conc>summary::-webkit-details-marker{display:none}
+details.conc>summary .co{font-family:"Source Serif 4",serif;font-weight:400;color:var(--muted);font-size:13.5px}
+details.conc>summary .pct{margin-left:auto;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+details.conc[open]>summary{border-bottom:1px solid var(--line2)}
+.conc-body{padding:10px 13px 13px}
+
+.lede{max-width:66ch;color:var(--muted);font-size:15px;margin:2px 0 14px}
+h2.sec{font-size:22px;letter-spacing:-.02em;margin:26px 0 2px}
+h3.sub{font-size:14px;margin:18px 0 6px;color:var(--muted)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.two{grid-template-columns:1fr}}
+.trk{display:grid;grid-template-columns:150px 1fr 48px;gap:10px;align-items:center;padding:6px 0;font-family:Archivo;font-size:13px}
+.trk .n{font-variant-numeric:tabular-nums;color:var(--muted);text-align:right}
+@media(max-width:520px){.trk{grid-template-columns:110px 1fr 44px;font-size:12px}}
+.hide{display:none}
+.sync{font-family:Archivo;font-size:11.5px;color:var(--muted)}
+@media print{
+  header.top,nav.tabs,.rail,.headmeta{display:none}
+  .card{break-inside:avoid;border-color:#bbb}
+  body{background:#fff}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <h1 class="brand">End-Term &amp; Placement War Room <span>· Akash &amp; Vanshika</span></h1>
+    <div class="headmeta">
+      <span class="sync" id="sync">connecting…</span>
+      <button class="mini" id="themeBtn">Dark</button>
+      <button class="mini" onclick="window.print()">Print</button>
+    </div>
+  </div>
+  <div class="topbar">
+    <div class="lab"><span id="ovLabel">Everything ticked so far</span><span id="ovPct">0%</span></div>
+    <div class="bar"><i id="ovBar"></i></div>
+  </div>
+  <nav class="tabs" id="tabs"></nav>
+</header>
+
+<div class="wrap">
+  <div id="railWrap"><div class="rail" id="rail"></div></div>
+  <main id="view"></main>
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<script>
+/* ============================ CONTENT ============================ */
+
+// task string syntax:  "cat|text"  or  "cat|text||note"   (cat optional, defaults per section)
+const DAYS = [
+{d:"19 Sep",wd:"Saturday",n:"Day 1",exam:"",
+ target:"Open the subjects that cannot be crammed: SCM, MACR and IAPM all get a first pass today, and the joint marketing track begins. Strategic Management stays untouched until the 23rd.",
+ both:[
+  "MACR — read the syllabus end to end, mark which chapters are formula-heavy and which are theory-heavy",
+  "MACR — first two chapters properly, 4 sums between you",
+  "marketing|Joint concept 1 — STP. Do the full 10-point treatment together (definition through case question)",
+  "marketing|Joint method on STP: Akash explains it from a brand and campaign lens, Vanshika from a revenue and margin lens, then 3 interview questions each way"],
+ akash:[
+  "scm|SCM Unit 1 — supply chain fundamentals, flows, drivers. Draw the end-to-end flow on one page",
+  "scm|List every numerical type that can appear in the SCM paper (EOQ, safety stock, reorder point, forecasting). Listing only today"],
+ vanshika:[
+  "finance|IAPM foundations — investment vs speculation, risk-return, types of securities, primary vs secondary market. One page of notes",
+  "Revisit the first two MACR chapters' formats and formulas, solve 3 basic problems"],
+ place:["Write a first draft of \"Tell me about yourself\" (90 seconds) and record it on your phone||Both. Play it back once, note what sounded rehearsed"],
+ up:["excel|Excel basics and cell references — relative, absolute, mixed. Practical: build a 20-row sales sheet and use $ references in a price × quantity formula"],
+ cv:["cv|Open your CV, highlight every line an interviewer could question, number them||Both. This numbered list drives the whole CV track"],
+ rev:["10-minute recall out loud: STP for both, supply chain flows for Akash, IAPM basics for Vanshika"]},
+
+{d:"20 Sep",wd:"Sunday",n:"Day 2",exam:"",
+ target:"Real momentum on MACR, SCM and IAPM, and two more marketing concepts banked.",
+ both:[
+  "MACR — two more chapters, 6 sums. Compare methods where you solved the same sum differently",
+  "Cross-teach: Akash explains today's SCM topic to Vanshika in ten minutes, Vanshika explains today's IAPM topic to Akash",
+  "marketing|Joint concepts 2 and 3 — Segmentation and Targeting, full 10-point treatment",
+  "cases|Joint case 1 — Zomato. All nine case points, finish with a 2-minute spoken explanation each"],
+ akash:[
+  "scm|SCM — procurement and supplier management. Note the Maruti/Toyota supplier model as your standing example",
+  "scm|Solve 3 EOQ problems, write the formula from memory afterwards"],
+ vanshika:[
+  "MACR — extra depth: redo today's two hardest sums with the notes closed",
+  "finance|IAPM — risk and return numericals: expected return, variance, standard deviation. 3 problems"],
+ place:["interview|\"Walk me through your CV\" — a 2-minute chronological version, delivered to each other"],
+ up:["excel|Excel — SUM, AVERAGE, COUNT, COUNTA, then IF / AND / OR. Practical: add a Performance column flagging High, Medium, Low"],
+ cv:["cv|Akash: pick Marketing project 1 and fill the full defence sheet. Vanshika: same for the finance internship"],
+ rev:["Quiz each other with 10 rapid questions on STP, segmentation and targeting"]},
+
+{d:"21 Sep",wd:"Monday",n:"Day 3",exam:"",
+ target:"The first genuinely deep day on SCM and IAPM, with MACR kept moving.",
+ both:[
+  "MACR — two more chapters, 6 sums. Half the syllabus should be behind you by tonight",
+  "marketing|Joint concepts 4 and 5 — Positioning and USP. Write positioning statements for three brands and defend them to each other"],
+ akash:[
+  "scm|SCM — inventory management: EOQ, reorder point, safety stock, ABC and VED analysis. Solve 5 numericals",
+  "scm|Bullwhip effect — causes and remedies, with the P&G diaper case as the illustration"],
+ vanshika:[
+  "finance|IAPM — portfolio theory: Markowitz, efficient frontier, diversification, beta, CAPM. 3 numericals",
+  "MACR — make a worked-example sheet for the chapter Akash finds hardest"],
+ place:["interview|Write five-line answers: Why Marketing (both), Why Finance (Vanshika), Why Operations (Akash)"],
+ up:["excel|Excel — SUMIFS, COUNTIFS, AVERAGEIFS. Practical: build a region-wise and month-wise sales summary from the same sheet"],
+ cv:["cv|Akash: operations or campaign project defence sheet. Vanshika: ECOIL and the ratio analysis work"],
+ rev:["15-minute blurt page — write everything you remember from today's SCM and IAPM topics, then check what you missed"]},
+
+{d:"22 Sep",wd:"Tuesday",n:"Day 4",exam:"",
+ target:"Close out MACR's syllabus and finish the hard SCM and IAPM topics, so tomorrow can be Strategic Management and nothing else.",
+ both:[
+  "MACR — finish the remaining chapters. Everything read at least once by tonight",
+  "marketing|Joint concepts 6 and 7 — POP vs POD, and 4Ps / 7Ps. Apply the 7Ps to a service brand such as Swiggy or Urban Company",
+  "Ten minutes at the end: collect SM-II notes, PPTs and cases in one folder so tomorrow starts at zero friction"],
+ akash:[
+  "scm|SCM — warehousing, logistics, distribution network design, last-mile. Amazon and Flipkart as examples",
+  "scm|5 mixed numericals, timed"],
+ vanshika:[
+  "MACR — the chapter you are weakest at, done properly. 8 sums",
+  "finance|IAPM — bond valuation and equity valuation basics. 3 numericals"],
+ place:["interview|Strengths and weaknesses, plus one leadership story each in STAR format"],
+ up:["excel|Excel — VLOOKUP, XLOOKUP, INDEX-MATCH, IFERROR. Practical: build a product lookup that survives a deleted column"],
+ cv:["cv|Write five likely interviewer questions against every CV line you numbered on Day 1"],
+ rev:["20 minutes, notes closed: MACR formulas from memory, then the marketing concepts covered so far"]},
+
+{d:"23 Sep",wd:"Wednesday",n:"Day 5",exam:"",
+ target:"The whole of Strategic Management, start to finish, in one day. Nothing else competes for attention.",
+ both:[
+  "SM-II — map the syllabus first: every unit and case listed, marked Easy / Medium / Hard. Twenty minutes, no longer",
+  "SM-II — strategy basics: corporate vs business vs functional, vision, mission, objectives",
+  "SM-II — analysis frameworks: PESTEL, Porter's Five Forces, value chain. Apply each to one Indian company so they stick",
+  "SM-II — portfolio frameworks: BCG, GE Nine-Cell, Ansoff, in one comparison table",
+  "SM-II — implementation: structure-strategy fit, McKinsey 7S, balanced scorecard",
+  "SM-II — restructuring, mergers and acquisitions, diversification, with two named examples",
+  "SM-II — remaining units: strategic control, corporate governance, blue ocean, strategic leadership",
+  "SM-II — every case discussed in class, five-line answer each",
+  "SM-II — draw every framework diagram from memory until they come out clean",
+  "SM-II — write two full-length answers in exam format, timed",
+  "MACR — 30 minutes, formula sheet only. Keep it warm, start nothing new"],
+ akash:["scm|Read yesterday's SCM notes once. No new topics today"],
+ vanshika:["Glance at the MACR formula sheet. Leave IAPM alone today"],
+ place:["Ten minutes only — say your \"Tell me about yourself\" out loud once"],
+ up:["Optional: 15 minutes of Excel shortcut drilling. Skip it guilt-free if revision is running long"],
+ cv:["Nothing today"],
+ rev:["Marketing concepts 1 to 7, rapid recall, 15 minutes"]},
+
+{d:"24 Sep",wd:"Thursday",n:"Day 6",exam:"Strategic Management-II",
+ target:"Clear SM-II in the morning, then turn the whole day over to MACR.",
+ both:[
+  "Five-minute post-exam debrief, then close the SM-II chapter completely. No post-mortems",
+  "MACR — complete syllabus revision pass: theory plus every formula",
+  "MACR — one full previous paper, or 10 mixed sums under time",
+  "MACR — build a one-page formula and format sheet you will read again tomorrow morning"],
+ akash:["MACR — go hardest at your weakest chapters. Get Vanshika to teach you two of them"],
+ vanshika:["MACR — lead the session. Take the tricky sums and explain the logic, not just the steps"],
+ place:["Nothing today"],up:["Nothing today"],cv:["Nothing today"],
+ rev:["Read the MACR formula sheet once before sleeping"]},
+
+{d:"25 Sep",wd:"Friday",n:"Day 7",exam:"MACR",
+ target:"Clear MACR, then a full SCM push. Akash leads this one.",
+ both:[
+  "scm|SCM — complete syllabus revision, all units",
+  "scm|SCM — every numerical type: EOQ, safety stock, reorder point, forecasting, aggregate planning",
+  "scm|SCM — case-type questions: bullwhip, supplier selection, network design"],
+ akash:["scm|Lead the session. Teach Vanshika the numericals, then take the extra depth yourself: supply chain KPIs, cost optimisation, process efficiency"],
+ vanshika:["scm|Cover the SCM syllabus at exam depth — theory in full, plus the three most likely numerical types"],
+ place:["Nothing today"],up:["Nothing today"],cv:["Nothing today"],
+ rev:["Redraw the SCM one-page flow map from memory before sleeping"]},
+
+{d:"26 Sep",wd:"Saturday",n:"Day 8",exam:"SCM",
+ target:"Clear SCM, then prepare IMC and ILW together — both papers are tomorrow.",
+ both:[
+  "marketing|IMC — full syllabus: communication process, the IMC tool mix, media planning, advertising, sales promotion, PR, DAGMAR, AIDA",
+  "marketing|IMC — lock in three real campaign examples you can drop into any answer",
+  "ILW — complete syllabus revision: acts, key sections, definitions",
+  "ILW — write the section numbers and their one-line meaning on a single sheet"],
+ akash:["ILW with an operations lens — carriage of goods, warehousing, contracts, anything touching logistics"],
+ vanshika:["ILW with a finance and compliance lens. Then 30 minutes glancing at the IAPM formula sheet, nothing more"],
+ place:["Nothing today"],up:["Nothing today"],cv:["Nothing today"],
+ rev:["20-minute recall: IMC models and ILW sections"]},
+
+{d:"27 Sep",wd:"Sunday",n:"Day 9",exam:"IMC + ILW",
+ target:"Two papers done, then the whole evening belongs to IAPM.",
+ both:["Five-minute debrief after both papers, then switch. Akash quizzes Vanshika from her own IAPM notes — it is the fastest way to find her gaps"],
+ akash:["finance|IAPM at placement depth only: be able to explain CAPM, beta and the risk-return trade-off in an interview. Read Vanshika's formula sheet"],
+ vanshika:[
+  "finance|IAPM full revision — risk and return, portfolio theory, CAPM, bond and equity valuation, fundamental and technical analysis",
+  "finance|IAPM — portfolio evaluation: Sharpe, Treynor, Jensen. Know when each is used",
+  "finance|Solve 12 numericals across the paper's likely question types",
+  "finance|One full previous paper, timed, plus a final one-page formula sheet"],
+ place:["Nothing today"],up:["Nothing today"],cv:["Nothing today"],
+ rev:["Read the IAPM formula sheet once before sleeping"]},
+
+{d:"28 Sep",wd:"Monday",n:"Day 10",exam:"IAPM",
+ target:"Last exam of this cluster. Take a real break, then restart as placement prep rather than exam prep.",
+ both:[
+  "Take an actual half-day off after the paper. This is on the list because you will otherwise skip it",
+  "Reopen the CV defence sheets and list what is still unfinished",
+  "marketing|Joint concepts 8 and 9 — AIDA and Customer Journey, full 10-point treatment",
+  "cases|Joint case 2 — Nykaa"],
+ akash:["pbi|Power BI — install it, tour the interface, import an Excel file successfully"],
+ vanshika:["pbi|Power BI — same setup steps","finance|Finance track — accounting basics, the three statements, and exactly how they link to each other"],
+ place:["interview|Final version of \"Tell me about yourself\", recorded. Give each other honest feedback on it"],
+ up:["excel|Excel — sorting, filtering, conditional formatting, data validation. Practical: build a data-entry sheet nobody can type junk into"],
+ cv:["cv|Finish every remaining project defence sheet. No project left undocumented"],
+ rev:["Marketing concepts 1 to 9, rapid recall"]},
+
+{d:"29 Sep",wd:"Tuesday",n:"Day 11",exam:"",
+ target:"Placement engine switched on. B2B gets a light first pass.",
+ both:[
+  "marketing|Joint concepts 10 and 11 — Marketing Funnel and Brand Equity, full 10-point treatment",
+  "b2b|B2B — skim the syllabus, mark the units, read Unit 1 only",
+  "cases|Joint case 3 — Amul"],
+ akash:[
+  "ops|Operations track — demand forecasting, lead time, safety stock, supply chain KPIs. Use Zara or Amazon as the running case",
+  "pbi|Power BI — Power Query and data cleaning on your own Excel file"],
+ vanshika:[
+  "finance|Finance track — revenue, EBITDA, EBIT, PAT, working capital, cash flow, free cash flow. Know what each one hides",
+  "ratios|Ratios block 1 — liquidity and profitability. Formula, meaning, interpretation, example, interview question for each",
+  "pbi|Power BI — Power Query and data cleaning"],
+ place:["interview|Mock interview round 1 — 20 minutes each, the other plays interviewer. Akash gets marketing and operations questions, Vanshika gets finance and marketing"],
+ up:["excel|Excel — Pivot Tables and Pivot Charts. Practical: pivot the sales sheet by region and by month, then chart it"],
+ cv:["cv|Five likely interviewer questions per project, written out and answered aloud to each other"],
+ rev:["Ten-question cross-quiz on whatever the other person studied today"]},
+
+{d:"30 Sep",wd:"Wednesday",n:"Day 12",exam:"",
+ target:"Full B2B Marketing day. This is the one exam you are deliberately preparing the day before.",
+ both:[
+  "b2b|B2B — organisational buying behaviour, the buying centre roles, buy classes (new task, modified rebuy, straight rebuy)",
+  "b2b|B2B — segmentation, value proposition, pricing, channels, key account management, CRM",
+  "b2b|BANT and a B2B vs B2C comparison table. This doubles as placement preparation, so write it properly",
+  "b2b|Three real B2B examples you can name in any answer: Tata Steel, Siemens, Salesforce",
+  "b2b|Write two full-length answers in exam format, timed"],
+ akash:["b2b|Add the channel and distribution angle — where B2B supply chains and marketing meet"],
+ vanshika:["b2b|Add the pricing, margin and key-account economics angle"],
+ place:["Fifteen minutes only — revise the two-minute CV walkthrough"],
+ up:["Nothing today"],cv:["Nothing today"],
+ rev:["B2B frameworks recall with notes closed"]},
+
+{d:"1 Oct",wd:"Thursday",n:"Day 13",exam:"B2B Marketing",
+ target:"Exams finished. Tonight you plan the placement sprint that follows.",
+ both:[
+  "Rest properly after the paper, then sit down for a 30-minute planning session for the post-exam sprint",
+  "marketing|Joint concepts 12 to 15 — CAC, CLV, CTR, Conversion Rate. This is the analytics block, so do the numbers, not just the definitions",
+  "cases|Joint case 4 — Netflix or Starbucks, your pick"],
+ akash:["pbi|Kick off the Power BI project: Marketing and Sales Performance Dashboard","ops|Operations track — last-mile delivery and cost optimisation with a real company"],
+ vanshika:["pbi|Kick off the Power BI project: Finance Performance Dashboard","finance|Finance track — time value of money, NPV, IRR, DCF basics"],
+ place:["interview|Mock interview round 2, harder than round 1. Interrupt each other, push back on answers"],
+ up:["excel|Excel — Goal Seek and sensitivity analysis with data tables. Vanshika also: the skeleton of a basic financial model"],
+ cv:["cv|Final polish — read each other's CV line by line and mark anything you could not defend"],
+ rev:["Everything on the marketing concept list that is still unticked — list it, schedule it"]}
+];
+
+const TEN = ["Definition in your own words","Why it matters to the business","The framework or model behind it","A real company example","Mini case: what that company actually did","How exactly they used the concept","What worked and what did not","Apply it to a second company","Answer one interview question aloud","Solve one case-based question"];
+
+const CONCEPTS = [
+ ["STP","Tata Motors or Nykaa"],["Segmentation","Hindustan Unilever's shampoo portfolio"],
+ ["Targeting","Netflix India's plan tiers"],["Positioning","Volvo and safety"],
+ ["USP","Domino's delivery promise"],["POP vs POD","Colgate vs Sensodyne"],
+ ["4Ps and 7Ps","Starbucks India"],["AIDA","a Cadbury Dairy Milk campaign"],
+ ["Customer Journey","Amazon end to end"],["Marketing Funnel","Zomato"],
+ ["CAC","Zepto or Swiggy Instamart"],["CLV","Netflix subscriptions"],
+ ["CTR","any Meta ad campaign you can find numbers for"],["Conversion Rate","Myntra's End of Reason Sale"],
+ ["Brand Equity","Amul"],["Performance Marketing","boAt"],
+ ["Affiliate Marketing","Amazon Associates"],["Lead Generation","an edtech funnel"],
+ ["BANT","Salesforce"],["B2B vs B2C","Tata Steel vs Tata Tea"],["IMC","Coca-Cola's Share a Coke"]
+];
+
+const CASE_STEPS = ["Target segment","Positioning","USP","Marketing mix","Customer journey","Communication strategy","Competitors","One concrete improvement","Deliver a 2-minute explanation"];
+const CASES = ["Coca-Cola","Zomato","Swiggy","Amul","Nike","Apple","Nykaa","Amazon","Netflix","Starbucks","Reliance Jio","Tata Group","A current business case from this week's news"];
+
+const EXCEL = [
+ ["Excel basics and navigation","Rebuild a messy sheet with proper headers, freeze panes and named tabs"],
+ ["Cell references","Price × quantity across 20 rows using relative, absolute and mixed references"],
+ ["SUM, AVERAGE, COUNT, COUNTA","Summary block at the top of your sales sheet"],
+ ["IF, AND, OR, nested IF","Flag each row High, Medium or Low on two conditions at once"],
+ ["SUMIFS, COUNTIFS, AVERAGEIFS","Region × month summary table built without a pivot"],
+ ["VLOOKUP","Pull product price into an orders sheet"],
+ ["XLOOKUP","Redo the same lookup and explain out loud why it is better"],
+ ["INDEX-MATCH","Left lookup that VLOOKUP cannot do"],
+ ["IFERROR","Wrap every lookup so the sheet never shows #N/A"],
+ ["Sorting and filtering","Multi-level sort, then filter to the bottom 10% of performers"],
+ ["Conditional formatting","Colour scale on margin, plus a rule that flags negative values"],
+ ["Data validation","Dropdown lists for region and category so no one can mistype"],
+ ["Pivot Tables","Sales by region by month with a calculated field"],
+ ["Pivot Charts","Chart the pivot and add a slicer"],
+ ["Goal Seek","Find the volume needed to hit a target profit"],
+ ["Sensitivity analysis","Two-variable data table on price and volume"],
+ ["Basic dashboard","One sheet, four charts, two slicers, no clutter"],
+ ["Basic financial modelling","Three-statement skeleton with revenue drivers, Vanshika leads"]
+];
+
+const FINANCE = ["Accounting basics — debit, credit, accrual, matching","The three financial statements, line by line","How the three statements link together","Revenue recognition and quality of revenue","EBITDA and why people love and distrust it","EBIT","PAT and what sits between EBIT and PAT","Working capital and the cash conversion cycle","Cash flow statement — operating, investing, financing","Free cash flow, FCFF vs FCFE","Debt vs equity, and when a company chooses each","Cost of debt","Cost of equity and CAPM","WACC","Time value of money","NPV","IRR and where it misleads","DCF basics — build one for a small company","Enterprise Value","Equity Value","Market capitalisation, and EV vs market cap"];
+
+const RATIOS = [
+ ["Liquidity",["Current Ratio","Quick Ratio"]],
+ ["Profitability",["Gross Margin","Operating Margin","Net Profit Margin","Return on Assets","Return on Equity"]],
+ ["Efficiency",["Inventory Turnover","Receivables Turnover","Asset Turnover"]],
+ ["Solvency",["Debt-Equity","Interest Coverage"]],
+ ["Market",["EPS","P/E","P/B","Dividend Yield"]]
+];
+const RSTEPS = ["Formula","Meaning","Interpretation","Real example","Interview question"];
+
+const OPS = [
+ ["Supply chain fundamentals","Maruti Suzuki"],["Procurement and sourcing","Tata Motors"],
+ ["Inventory management","Big Bazaar or DMart"],["Warehousing","Flipkart fulfilment centres"],
+ ["Logistics","Delhivery"],["Distribution networks","Hindustan Unilever"],
+ ["Demand forecasting","Zara"],["Lead time and its cost","Apple's supplier base"],
+ ["Safety stock","any FMCG distributor"],["EOQ","a manufacturing plant of your choice"],
+ ["Bullwhip effect","P&G diapers"],["Supplier management","Toyota"],
+ ["Last-mile delivery","Zepto or Blinkit"],["Supply chain KPIs","Amazon"],
+ ["Cost optimisation","DMart's operating model"],["Process efficiency and lean","Toyota Production System"]
+];
+
+const PBI = ["Interface tour and terminology","Import data from Excel","Power Query editor","Data cleaning — types, nulls, splits, unpivot","Relationships between tables","Build a clean star-schema data model","Measures vs calculated columns","Basic DAX — SUM, CALCULATE, DIVIDE, time intelligence","Visualisations — pick the right chart for the question","Filters — visual, page, report level","Slicers and cross-filtering","Dashboard design: layout, colour discipline, one message per page"];
+
+const CV14 = ["Problem statement","Objective","My exact contribution","Methodology","Tools used","Data used","Analysis performed","Result","Business impact","Challenges faced","How I solved them","What I learned","What I would improve","Five likely interviewer questions, written and answered"];
+
+const INTERVIEW = [
+ ["Tell me about yourself","b"],["Walk me through your CV","b"],["Why marketing?","b"],
+ ["Why finance?","v"],["Why operations?","a"],["Why this company, and why this role?","b"],
+ ["Internship questions — every claim on the CV","b"],["Project questions — depth, not summary","b"],
+ ["Situation-based questions","b"],["Guesstimates and mini cases","b"],
+ ["Strengths and weaknesses with evidence","b"],["Leadership: a time you led without authority","b"],
+ ["Team conflict and how you handled it","b"],["Excel and tools questions","b"],
+ ["Business awareness — one story you can discuss from this week","b"]
+];
+
+/* ============================ STATE ============================ */
+const LS="warroom.v1";
+let state={checks:{},texts:{}};
+try{const r=localStorage.getItem(LS); if(r) state=Object.assign({checks:{},texts:{}},JSON.parse(r));}catch(e){}
+
+let dbDoc=null, writing=false, dirty=false, firebaseReady=false;
+function persistLocal(){ try{localStorage.setItem(LS,JSON.stringify(state));}catch(e){} }
+function scheduleSave(){
+  persistLocal();
+  if(!dbDoc) return;
+  dirty=true;
+  clearTimeout(scheduleSave._t);
+  scheduleSave._t=setTimeout(flush,500);
+}
+async function flush(){
+  if(!dbDoc||writing||!dirty) return;
+  writing=true; dirty=false;
+  try{
+    await dbDoc.set({checks:state.checks,texts:state.texts,updatedAt:firebase.firestore.FieldValue.serverTimestamp()});
+    setSync("synced with both of you");
+  }catch(e){
+    console.error(e);
+    setSync("saved on this device only");
+  }
+  writing=false;
+  if(dirty) setTimeout(flush,300);
+}
+function setSync(t){const el=document.getElementById("sync"); if(el) el.textContent=t;}
+
+(function initFirebase(){
+  try{
+    const firebaseConfig={
+      apiKey:"AIzaSyDYUySUY-4BdbikcsbgILEnoDw6fTeM_6U",
+      authDomain:"akash-vanshika-war-room.firebaseapp.com",
+      projectId:"akash-vanshika-war-room",
+      storageBucket:"akash-vanshika-war-room.firebasestorage.app",
+      messagingSenderId:"807776075897",
+      appId:"1:807776075897:web:6dec36368e7d014b3e94a8",
+      measurementId:"G-LXVRBRSEKX"
+    };
+    if(!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+    const db=firebase.firestore();
+    dbDoc=db.collection("warroom").doc("progress");
+    firebaseReady=true;
+    setSync("connecting…");
+
+    dbDoc.onSnapshot(snap=>{
+      const d=snap.exists?snap.data():null;
+      if(d && !snap.metadata.hasPendingWrites && !dirty && !writing){
+        state.checks=d.checks||{};
+        state.texts=d.texts||{};
+        persistLocal();
+        applyState();
+      }
+      setSync("synced with both of you");
+    },err=>{
+      console.error(err);
+      setSync("Firebase connection error");
+    });
+
+    if(Object.keys(state.checks).length||Object.keys(state.texts).length) scheduleSave();
+  }catch(e){
+    console.error(e);
+    setSync("saved on this device only");
+  }
+})();
+
+/* ============================ RENDER HELPERS ============================ */
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function parse(raw,defCat){
+  let cat=defCat,text=raw,note="";
+  const bar=raw.indexOf("|");
+  if(bar>0 && bar<24 && !raw.slice(0,bar).includes(" ")){cat=raw.slice(0,bar);text=raw.slice(bar+1);}
+  const nn=text.indexOf("||"); if(nn>-1){note=text.slice(nn+2);text=text.slice(0,nn);}
+  return{cat,text,note};
+}
+function task(id,raw,defCat,owner){
+  const {cat,text,note}=parse(raw,defCat);
+  return `<li><input type="checkbox" id="${id}" data-cat="${cat}" data-own="${owner}"><label class="tk" for="${id}">${esc(text)}${note?`<span class="note">${esc(note)}</span>`:""}</label></li>`;
+}
+function list(prefix,arr,defCat,owner){
+  if(!arr||!arr.length) return "";
+  return `<ul class="tasks">${arr.map((t,i)=>task(prefix+i,t,defCat,owner)).join("")}</ul>`;
+}
+function fill(id,ph){return `<input class="fill" data-text="${id}" placeholder="${ph||""}">`;}
+
+/* ============================ DAY VIEW ============================ */
+function dayHTML(i){
+  const D=DAYS[i], p="d"+i+"-";
+  return `<article class="card">
+    <div class="daytitle"><h2>${D.d}</h2><span class="wd">${D.wd} · ${D.n}</span>
+      ${D.exam?`<span class="examflag">Exam today: ${esc(D.exam)}</span>`:""}</div>
+    <p class="target"><em>Joint main target</em>${esc(D.target)}</p>
+
+    <div class="block b-both"><h3><span class="who w-b">Both</span> Common study</h3>${list(p+"b-",D.both,"exam","b")}</div>
+    <div class="block b-akash"><h3><span class="who w-a">Akash</span> Individual</h3>${list(p+"a-",D.akash,"exam","a")}</div>
+    <div class="block b-vanshika"><h3><span class="who w-v">Vanshika</span> Individual</h3>${list(p+"v-",D.vanshika,"exam","v")}</div>
+
+    <div class="block"><h3>Joint placement preparation</h3>${list(p+"p-",D.place,"interview","b")}</div>
+    <div class="block"><h3>Upskilling</h3>${list(p+"u-",D.up,"excel","b")}</div>
+    <div class="block"><h3>CV mastery</h3>${list(p+"c-",D.cv,"cv","b")}</div>
+    <div class="block"><h3>Quick revision</h3>${list(p+"r-",D.rev,"exam","b")}</div>
+
+    <div class="must"><h3>Must complete today</h3>${fill(p+"must","The one thing that makes today count")}</div>
+    <div class="must"><h3>Completed today</h3>
+      ${[0,1,2,3,4].map(k=>fill(p+"done"+k,"")).join("")}</div>
+    <div class="must"><h3>Carry forward to tomorrow</h3>
+      ${fill(p+"cf0","")}${fill(p+"cf1","")}</div>
+  </article>`;
+}
+
+/* ============================ TRACK VIEWS ============================ */
+function marketingHTML(){
+  let h=`<h2 class="sec">Shared marketing track</h2>
+  <p class="lede">Every concept here is one shared task. Do not split them. The bar is simple: could you talk about this for two minutes in an interview without notes?</p>`;
+  h+=CONCEPTS.map((c,i)=>{
+    const p="mk"+i+"-";
+    return `<details class="conc" data-grp="${p}"><summary><input type="checkbox" id="${p}main" data-cat="marketing" data-own="b"><span>${esc(c[0])}</span> <span class="co">— try ${esc(c[1])}</span><span class="pct" data-pct="${p}"></span></summary>
+      <div class="conc-body"><ul class="tasks">${TEN.map((t,j)=>task(p+j,t,"marketing","b")).join("")}</ul></div></details>`;
+  }).join("");
+  h+=`<h2 class="sec">Joint case practice</h2>
+  <p class="lede">One case every few days, both of you, same case. Akash argues the brand and channel side, Vanshika the unit economics. Finish with a two-minute spoken answer each.</p>`;
+  h+=CASES.map((c,i)=>{
+    const p="cs"+i+"-";
+    return `<details class="conc" data-grp="${p}"><summary><input type="checkbox" id="${p}main" data-cat="cases" data-own="b"><span>${esc(c)}</span><span class="pct" data-pct="${p}"></span></summary>
+      <div class="conc-body"><ul class="tasks">${CASE_STEPS.map((t,j)=>task(p+j,t,"cases","b")).join("")}</ul>
+      <p class="lede" style="margin-top:10px">Two-minute verdict, written: ${fill(p+"note","what is the single biggest thing this brand should change?")}</p></div></details>`;
+  }).join("");
+  return h;
+}
+function excelHTML(){
+  return `<h2 class="sec">Excel</h2>
+  <p class="lede">Both of you do all of it. Vanshika goes deeper from Pivot Tables onward because finance interviews test the sheet, not the theory. No topic counts as done without its practical task.</p>
+  <ul class="tasks">${EXCEL.map((e,i)=>task("xl"+i,"excel|"+e[0]+"||Practical: "+e[1],"excel","b")).join("")}</ul>`;
+}
+function financeHTML(){
+  let h=`<h2 class="sec">Finance track</h2>
+  <p class="lede">Vanshika owns this. Akash should be able to hold a conversation about the first eight items and about EV vs market cap, because marketing cases turn into margin conversations fast.</p>
+  <ul class="tasks">${FINANCE.map((f,i)=>task("fn"+i,"finance|"+f,"finance","v")).join("")}</ul>
+  <h2 class="sec">Financial ratios</h2>
+  <p class="lede">Each ratio is only done when all five boxes are ticked: formula, meaning, interpretation, a real example, and an interview question you can answer.</p>`;
+  let n=0;
+  RATIOS.forEach(g=>{
+    h+=`<h3 class="sub">${g[0]}</h3>`;
+    g[1].forEach(r=>{
+      const p="rt"+(n++)+"-";
+      h+=`<details class="conc" data-grp="${p}"><summary><input type="checkbox" id="${p}main" data-cat="ratios" data-own="v"><span>${esc(r)}</span><span class="pct" data-pct="${p}"></span></summary>
+      <div class="conc-body"><ul class="tasks">${RSTEPS.map((s,j)=>task(p+j,s,"ratios","v")).join("")}</ul>
+      <p class="lede" style="margin-top:8px">Write the formula from memory: ${fill(p+"f","")}</p></div></details>`;
+    });
+  });
+  return h;
+}
+function opsHTML(){
+  return `<h2 class="sec">Operations and supply chain</h2>
+  <p class="lede">Akash owns this one. Vanshika covers whatever the SCM paper needs and stops there. Each topic is done when you can explain it through the company named next to it.</p>
+  <ul class="tasks">${OPS.map((o,i)=>task("op"+i,"ops|"+o[0]+"||Case: "+o[1],"ops","a")).join("")}</ul>`;
+}
+function pbiHTML(){
+  return `<h2 class="sec">Power BI</h2>
+  <p class="lede">Learn it together, build separately. Same dataset habits, two different dashboards, so you can each defend yours in an interview.</p>
+  <ul class="tasks">${PBI.map((p,i)=>task("pb"+i,"pbi|"+p,"pbi","b")).join("")}</ul>
+  <div class="two">
+    <div class="card" style="border-left:3px solid var(--akash)">
+      <h3 style="margin-top:0">Akash — Marketing and sales performance dashboard</h3>
+      <ul class="tasks">${["Find or build a sales dataset with region, product, channel and month","Clean it in Power Query","Model it: fact table plus date, product and region dimensions","Measures: revenue, growth, conversion rate, CAC if the data allows","Pages: overview, channel performance, product mix","Write the three insights the dashboard is meant to prove"].map((t,i)=>task("pja"+i,"pbi|"+t,"pbi","a")).join("")}</ul>
+    </div>
+    <div class="card" style="border-left:3px solid var(--vanshika)">
+      <h3 style="margin-top:0">Vanshika — Finance performance dashboard</h3>
+      <ul class="tasks">${["Pull three years of statements for one listed company","Clean and structure them in Power Query","Model: P&L, balance sheet and cash flow as linked tables","Measures: margins, ROE, debt-equity, working capital days","Pages: performance summary, ratio trends, cash flow","Write the investment view the dashboard supports"].map((t,i)=>task("pjv"+i,"pbi|"+t,"pbi","v")).join("")}</ul>
+    </div>
+  </div>`;
+}
+function cvHTML(){
+  let h=`<h2 class="sec">CV defence</h2>
+  <p class="lede">Rule: nothing stays on the CV that you cannot defend for five minutes. Name each project in the box, then work the fourteen points. Where your CVs differ, the work is separate — everything else you rehearse together.</p>`;
+  [["Akash","a","akash","Marketing projects, campaigns, consumer insight work, marketing strategy, operations projects and internships"],
+   ["Vanshika","v","vanshika","Finance internship, ECOIL, ratio analysis, Excel and dashboard projects, other finance work"]].forEach(pr=>{
+    h+=`<h3 class="sub" style="color:var(--${pr[2]})">${pr[0]} — focus: ${pr[3]}</h3>`;
+    for(let s=0;s<4;s++){
+      const p="cv"+pr[1]+s+"-";
+      h+=`<details class="conc" data-grp="${p}"><summary><input type="checkbox" id="${p}main" data-cat="cv" data-own="${pr[1]}"><span>Item ${s+1}</span><span class="co">— internship or project</span><span class="pct" data-pct="${p}"></span></summary>
+      <div class="conc-body"><p>${fill(p+"name","Name it exactly as it appears on your CV")}</p>
+      <ul class="tasks">${CV14.map((t,j)=>task(p+j,t,"cv",pr[1])).join("")}</ul></div></details>`;
+    }
+  });
+  h+=`<h2 class="sec">Interview track</h2>
+  <p class="lede">Prepare the answer, then say it out loud to the other person. An answer you have only written is not prepared.</p>
+  <ul class="tasks">${INTERVIEW.map((q,i)=>{
+    const who=q[1]==="a"?"Akash":q[1]==="v"?"Vanshika":"Both";
+    return task("iv"+i,"interview|"+q[0]+"||"+who+(q[1]==="b"?" — Akash answers with marketing and operations examples, Vanshika with finance and marketing":""),"interview",q[1]);
+  }).join("")}</ul>
+  <h2 class="sec">The joint study method</h2>
+  <p class="lede">Run this loop on every common topic. It is the reason you are studying together rather than beside each other.</p>
+  <ul class="tasks">${["Both learn the concept independently first","Both explain it to each other, out loud, without notes","Akash adds the marketing and operations perspective","Vanshika adds the finance and business perspective","Both solve one mini case on it","Both ask each other three interview questions on it"].map((t,i)=>task("jm"+i,"interview|"+t,"interview","b")).join("")}</ul>`;
+  return h;
+}
+function trackerHTML(){
+  const rows=(own,items)=>items.map(it=>`<div class="trk"><span>${it[0]}</span><span class="bar"><i data-trkbar="${own}:${it[1]}"></i></span><span class="n" data-trk="${own}:${it[1]}">0%</span></div>`).join("");
+  return `<h2 class="sec">Trackers</h2>
+  <p class="lede">These fill themselves as you tick boxes anywhere in the dashboard.</p>
+  <div class="card" style="border-left:3px solid var(--akash)"><h3 style="margin-top:0">Akash</h3>
+    ${rows("a",[["Marketing","marketing"],["Operations and SCM","ops+scm"],["Excel","excel"],["Power BI","pbi"],["CV mastery","cv"],["Interview prep","interview"]])}</div>
+  <div class="card" style="border-left:3px solid var(--vanshika)"><h3 style="margin-top:0">Vanshika</h3>
+    ${rows("v",[["Finance","finance"],["Marketing","marketing"],["Excel","excel"],["Power BI","pbi"],["Financial ratios","ratios"],["CV mastery","cv"],["Interview prep","interview"]])}</div>
+  <div class="card" style="border-left:3px solid var(--joint)"><h3 style="margin-top:0">Both</h3>
+    ${rows("all",[["Marketing concepts","marketing"],["Marketing cases","cases"],["IMC and exam blocks","exam"],["B2B","b2b"],["Interview prep","interview"],["Everything","*"]])}</div>
+  <div class="card"><h3 style="margin-top:0">Notes to each other</h3>
+    <p class="lede" style="margin:0 0 8px">Anything one of you needs the other to know before tomorrow.</p>
+    ${[0,1,2,3,4,5].map(i=>fill("note"+i,"")).join("")}</div>`;
+}
+
+/* ============================ SHELL ============================ */
+const TABS=[["days","Daily plan"],["marketing","Marketing"],["excel","Excel"],["finance","Finance &amp; ratios"],["ops","Operations"],["pbi","Power BI"],["cv","CV &amp; interview"],["trk","Trackers"]];
+let tab="days", day=0;
+
+document.getElementById("tabs").innerHTML=TABS.map(t=>`<button role="tab" data-tab="${t[0]}">${t[1]}</button>`).join("");
+document.getElementById("tabs").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-tab]"); if(!b) return;
+  tab=b.dataset.tab; render(); window.scrollTo({top:0,behavior:"instant"});
+});
+
+function renderRail(){
+  document.getElementById("railWrap").className = tab==="days"?"":"hide";
+  document.getElementById("rail").innerHTML=DAYS.map((D,i)=>
+    `<button class="chip${D.exam?" examday":""}" data-day="${i}" aria-current="${i===day}">
+      <b>${D.d.split(" ")[0]}</b><small>${D.d.split(" ")[1]} · ${D.wd.slice(0,3)}</small>
+      <span class="ex">${D.exam?esc(D.exam.length>12?D.exam.slice(0,11)+"…":D.exam):""}</span>
+      <span class="bar" style="margin-top:6px"><i data-daybar="${i}"></i></span>
+    </button>`).join("");
+}
+document.getElementById("rail").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-day]"); if(!b) return;
+  day=+b.dataset.day; render();
+});
+
+function render(){
+  document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.tab===tab));
+  renderRail();
+  const v=document.getElementById("view");
+  v.innerHTML = tab==="days"?dayHTML(day)
+    : tab==="marketing"?marketingHTML()
+    : tab==="excel"?excelHTML()
+    : tab==="finance"?financeHTML()
+    : tab==="ops"?opsHTML()
+    : tab==="pbi"?pbiHTML()
+    : tab==="cv"?cvHTML()
+    : trackerHTML();
+  applyState();
+}
+
+function applyState(){
+  document.querySelectorAll('input[type=checkbox]').forEach(c=>{c.checked=!!state.checks[c.id];});
+  document.querySelectorAll('input[data-text]').forEach(t=>{t.value=state.texts[t.dataset.text]||"";});
+  recompute();
+}
+
+document.addEventListener("change",e=>{
+  const t=e.target;
+  if(t.type==="checkbox"){
+    if(t.checked) state.checks[t.id]=1; else delete state.checks[t.id];
+    const grp=t.closest("details.conc");
+    if(grp && t.id.endsWith("main")){
+      grp.querySelectorAll('.conc-body input[type=checkbox]').forEach(c=>{
+        c.checked=t.checked; if(t.checked) state.checks[c.id]=1; else delete state.checks[c.id];
+      });
+    }
+    scheduleSave(); recompute();
+  }
+});
+document.addEventListener("input",e=>{
+  const t=e.target;
+  if(t.dataset && t.dataset.text!==undefined){
+    if(t.value) state.texts[t.dataset.text]=t.value; else delete state.texts[t.dataset.text];
+    scheduleSave();
+  }
+});
+
+// full catalogue of every checkbox id -> {cat,own} so trackers work across tabs
+const CATALOG=(function(){
+  const out=[];
+  const add=(id,cat,own)=>out.push({id,cat,own});
+  DAYS.forEach((D,i)=>{
+    const p="d"+i+"-";
+    const secs=[["b-",D.both,"exam","b"],["a-",D.akash,"exam","a"],["v-",D.vanshika,"exam","v"],
+                ["p-",D.place,"interview","b"],["u-",D.up,"excel","b"],["c-",D.cv,"cv","b"],["r-",D.rev,"exam","b"]];
+    secs.forEach(s=>(s[1]||[]).forEach((raw,j)=>{const pr=parse(raw,s[2]); add(p+s[0]+j,pr.cat,s[3]);}));
+  });
+  CONCEPTS.forEach((c,i)=>{add("mk"+i+"-main","marketing","b"); TEN.forEach((t,j)=>add("mk"+i+"-"+j,"marketing","b"));});
+  CASES.forEach((c,i)=>{add("cs"+i+"-main","cases","b"); CASE_STEPS.forEach((t,j)=>add("cs"+i+"-"+j,"cases","b"));});
+  EXCEL.forEach((e,i)=>add("xl"+i,"excel","b"));
+  FINANCE.forEach((f,i)=>add("fn"+i,"finance","v"));
+  let n=0; RATIOS.forEach(g=>g[1].forEach(()=>{const p="rt"+(n++)+"-"; add(p+"main","ratios","v"); RSTEPS.forEach((s,j)=>add(p+j,"ratios","v"));}));
+  OPS.forEach((o,i)=>add("op"+i,"ops","a"));
+  PBI.forEach((p,i)=>add("pb"+i,"pbi","b"));
+  for(let i=0;i<6;i++){add("pja"+i,"pbi","a"); add("pjv"+i,"pbi","v");}
+  ["a","v"].forEach(w=>{for(let s=0;s<4;s++){const p="cv"+w+s+"-"; add(p+"main","cv",w); CV14.forEach((t,j)=>add(p+j,"cv",w));}});
+  INTERVIEW.forEach((q,i)=>add("iv"+i,"interview",q[1]));
+  for(let i=0;i<6;i++) add("jm"+i,"interview","b");
+  return out;
+})();
+
+function pct(filter){
+  const s=CATALOG.filter(filter);
+  if(!s.length) return 0;
+  const done=s.filter(x=>state.checks[x.id]).length;
+  return Math.round(done*100/s.length);
+}
+function recompute(){
+  const all=pct(()=>true);
+  document.getElementById("ovPct").textContent=all+"%";
+  document.getElementById("ovBar").style.width=all+"%";
+  document.querySelectorAll("[data-daybar]").forEach(el=>{
+    const i=+el.dataset.daybar, p="d"+i+"-";
+    el.style.width=pct(x=>x.id.startsWith(p))+"%";
+  });
+  document.querySelectorAll("[data-pct]").forEach(el=>{
+    const g=el.dataset.pct;
+    const v=pct(x=>x.id.startsWith(g)&&!x.id.endsWith("main"));
+    el.textContent=v+"%";
+  });
+  document.querySelectorAll("[data-trk]").forEach(el=>{
+    const [own,cats]=el.dataset.trk.split(":");
+    const cl=cats.split("+");
+    const v=pct(x=>(own==="all"||x.own===own||x.own==="b")&&(cats==="*"||cl.includes(x.cat)));
+    el.textContent=v+"%";
+    const bar=document.querySelector(`[data-trkbar="${el.dataset.trk}"]`);
+    if(bar) bar.style.width=v+"%";
+  });
+}
+
+// theme
+const tb=document.getElementById("themeBtn");
+const prefDark=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;
+let theme=localStorage.getItem("warroom.theme")||(prefDark?"dark":"light");
+function applyTheme(){document.documentElement.setAttribute("data-theme",theme); tb.textContent=theme==="dark"?"Light":"Dark";}
+tb.addEventListener("click",()=>{theme=theme==="dark"?"light":"dark"; try{localStorage.setItem("warroom.theme",theme);}catch(e){} applyTheme();});
+applyTheme();
+
+// open today's card if the date matches, else day 1
+(function(){
+  const now=new Date(), md=now.getDate()+" "+now.toLocaleString("en",{month:"short"});
+  const i=DAYS.findIndex(D=>D.d===md);
+  if(i>-1) day=i;
+})();
+render();
+</script>
+</body>
+</html>
